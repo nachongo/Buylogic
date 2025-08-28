@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BuyLogic - Optimiza tu punto de venta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="splash">
+    <img src="img/logo_celeste.png" alt="BuyLogic Splash Logo" class="splash-logo" />
+  </div>
+
+  <header>
+    <div class="logo">
+      <img src="img/logo_azul.png" alt="BuyLogic Logo" height="40" />
+    </div>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#producto">Producto</a>
+      <a href="#contacto">Contacto</a>
+    <a href="login.html" class="boton-login">Iniciar sesión</a>
+    </nav>
+  </header>
+
+  <section class="hero animate">
+        <h1>Convertí tu supermercado en un espacio inteligente.</h1>
+    <p>Descubrí cómo maximizar tus ventas y transformar la experiencia del cliente con inteligencia artificial.</p>
+  </section>
+
+  <section class="section animate" id="nosotros">
+    <h2>Sobre Nosotros</h2>
+    <p>En supermercados, kioscos y farmacias es común ver decisiones basadas en costumbre y no en datos. BuyLogic ofrece una plataforma de análisis basada en IA que transforma los videos de tus cámaras en mapas de calor, reportes de comportamiento y simulaciones. Esto te permite tomar decisiones estratégicas basadas en evidencia real, mejorando la experiencia del cliente y aumentando tus ingresos.</p>
+  </section>
+
+  <section class="section animate" id="producto">
+    <h2>Simulaciones y Servicios Extra</h2>
+    <p>Nuestro servicio incluye simulaciones predictivas que permiten anticipar resultados de cambios en la disposición, promociones u organización del local. También ofrecemos paquetes adicionales para más profundidad de análisis:</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Simulación Individual</h3>
+        <p>Probá una estrategia puntual antes de hacer cambios grandes. Pago por única vez sin compromiso.</p>
+      </div>
+      <div class="card">
+        <h3>Pack 5 Simulaciones</h3>
+        <p>Ideal para evaluar distintos escenarios en pocos días. Accedé con tarifa reducida y resultados rápidos.</p>
+      </div>
+      <div class="card">
+        <h3>Pack 10 Simulaciones</h3>
+        <p>Para clientes que desean testear múltiples estrategias de distribución en todo el local con mayor profundidad.</p>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="section animate" id="contacto">
+    <h2>Contacto</h2>
+    <p>¿Querés saber más sobre cómo BuyLogic puede ayudarte? Escribinos y nos pondremos en contacto a la brevedad.</p>
+
+<form id="form-contacto" onsubmit="enviarFormulario(event)">
+  <input type="text" name="nombre" placeholder="Nombre" required>
+  <input type="text" name="empresa" placeholder="Empresa" required>
+  <input type="tel" name="telefono" placeholder="Teléfono" required>
+  <input type="email" name="email" placeholder="Correo electrónico" required>
+  <textarea name="mensaje" placeholder="Mensaje" required></textarea>
+  <button type="submit">Enviar</button>
+</form>
+<div id="mensajeGracias" class="gracias-animacion" style="display:none;">
+  Gracias por contactarnos. Pronto nos pondremos en contacto.
+</div>
+<script>
+function enviarFormulario(event) {
+  event.preventDefault();
+  document.getElementById('form-contacto').reset();
+  const mensaje = document.getElementById('mensajeGracias');
+  mensaje.style.display = 'block';
+  mensaje.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+<style>
+#form-contacto {{
+  max-width: 500px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}}
+
+#form-contacto input,
+#form-contacto textarea {{
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: 'Inter', sans-serif;
+}}
+
+#form-contacto button {{
+  background-color: #22354c;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}}
+
+#form-contacto button:hover {{
+  background-color: #1a2b3c;
+}}
+
+.gracias-animacion {{
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 16px;
+  background-color: #dcf8ff;
+  color: #22354c;
+  font-weight: 600;
+  border-radius: 10px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}}
+
+@keyframes fadeIn {{
+  from {{ opacity: 0; transform: translateY(10px); }}
+  to {{ opacity: 1; transform: translateY(0); }}
+}}
+</style>
+
+    
+<div id="mensajeGracias" style="display:none; margin-top: 20px; background: #dcf8ff; padding: 16px; border-radius: 8px; color: #22354c; font-weight: 600; text-align: center; animation: fadeIn 0.5s ease-out;">
+  Gracias por contactarnos. Pronto nos pondremos en contacto.
+</div>
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+  </section>
+
+  <footer>
+    <img src="img/iso_celeste.png" alt="BuyLogic Isotipo" height="30" style="margin-bottom: 10px;">
+    <br />
+    &copy; 2025 BuyLogic. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+    });
+  </script>
+
+<script>
+  if (window.location.search.includes("nosplash")) {
+    const splash = document.querySelector(".splash");
+    if (splash) splash.style.display = "none";
+  }
+</script>
+
+
+
+</section>
+
+<style>
+form label {
+  display: block;
+  margin-top: 15px;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  font-family: 'Inter', sans-serif;
+}
+
+form button {
+  margin-top: 20px;
+  background-color: #22354c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #1a2b3c;
+}
+
+.gracias-animacion {
+  display: none;
+  margin-top: 30px;
+  padding: 15px;
+  border-radius: 12px;
+  background-color: #dcf8ff;
+  color: #22354c;
+  font-weight: 600;
+  text-align: center;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<script>
+function enviarFormulario(event) {
+  event.preventDefault();
+  document.getElementById('form-contacto').reset();
+  const gracias = document.getElementById('gracias');
+  gracias.style.display = 'block';
+  gracias.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+
+<style>
+form label {
+  display: block;
+  margin-top: 15px;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  font-family: 'Inter', sans-serif;
+}
+
+form button {
+  margin-top: 20px;
+  background-color: #22354c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #1a2b3c;
+}
+
+.gracias-animacion {
+  display: none;
+  margin-top: 30px;
+  padding: 15px;
+  border-radius: 12px;
+  background-color: #dcf8ff;
+  color: #22354c;
+  font-weight: 600;
+  text-align: center;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<script>
+function enviarFormulario(event) {
+  event.preventDefault();
+  document.getElementById('form-contacto').reset();
+  const gracias = document.getElementById('gracias');
+  gracias.style.display = 'block';
+  gracias.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+</body>
+
+</html>

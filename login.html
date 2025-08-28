@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BuyLogic - Iniciar sesión</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body class="login-bg">
+  
+<a href="index.html?nosplash=1" class="back-home">← Volver al inicio</a>
+
+  <div class="iso-big-deco"></div>
+  <main class="container">
+    <div class="form-container">
+      <img src="img/logo_azul.png" alt="BuyLogic Logo" class="logo-login" />
+      <h1>Iniciar Sesión</h1>
+      <form class="form login-form" onsubmit="return validarLogin(event)">
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="clave" placeholder="Clave de acceso" required />
+        <button type="submit">Ingresar</button>
+        <p id="mensaje-error" class="error-msg"></p>
+      </form>
+    </div>
+  </main>
+  <script>
+    function validarLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const clave = document.getElementById('clave').value;
+      const error = document.getElementById('mensaje-error');
+      if (email === "buylogic2025@gmail.com" && clave === "1234") {
+        window.location.href = "panel.html";
+      } else {
+        error.textContent = "Clave o usuario incorrecto";
+      }
+    }
+  </script>
+</body>
+</html>
