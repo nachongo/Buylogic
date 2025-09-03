@@ -60,25 +60,30 @@
     <h2>Contacto</h2>
     <p>¿Querés saber más sobre cómo BuyLogic puede ayudarte? Escribinos y nos pondremos en contacto a la brevedad.</p>
 
-<form id="form-contacto" action="https://submit-form.com/FpRXxHJNz" method="POST" novalidate>
-  <label for="name">Name</label>
+<form id="form-contacto" action="https://submit-form.com/FpRXxHJNz" method="POST">
+  <label for="name">Nombre</label>
   <input type="text" id="name" name="name" placeholder="Name" required />
 
-  <label for="email">Email</label>
+  <label for="email">Correo electrónico</label>
   <input type="email" id="email" name="email" placeholder="Email" required />
 
-  <label for="message">Message</label>
-  <textarea id="message" name="message" placeholder="Message" required></textarea>
+  <label for="message">Mensaje</label>
+  <textarea
+    id="message"
+    name="message"
+    placeholder="Mensaje"
+    required
+  ></textarea>
 
-  <!-- (Opcional) anti-spam honeypot -->
-  <input type="text" name="_honeypot" style="display:none">
+  <!-- (opcional) anti-spam -->
+  <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" />
 
-  <button type="submit" id="btnEnviar">Send</button>
+  <button type="submit" id="btnEnviar">Enviar</button>
 </form>
 
-<!-- Mensajes de estado en TU página -->
+<!-- Mensajes en TU página -->
 <div id="mensajeGracias" style="display:none; margin-top:12px;">
-  Gracias por contactarnos. Pronto nos pondremos en contacto.
+  ¡Gracias! Recibimos tu mensaje.
 </div>
 <div id="mensajeError" style="display:none; color:#c00; margin-top:12px;">
   Hubo un problema al enviar. Intentá nuevamente.
@@ -86,12 +91,12 @@
 
 <script>
   const form = document.getElementById('form-contacto');
-  const ok = document.getElementById('mensajeGracias');
-  const err = document.getElementById('mensajeError');
-  const btn = document.getElementById('btnEnviar');
+  const ok   = document.getElementById('mensajeGracias');
+  const err  = document.getElementById('mensajeError');
+  const btn  = document.getElementById('btnEnviar');
 
   form.addEventListener('submit', async (e) => {
-    e.preventDefault();                 // <- evita la redirección
+    e.preventDefault();               // <- evita que navegue fuera de tu página
     ok.style.display = 'none';
     err.style.display = 'none';
     btn.disabled = true;
@@ -108,15 +113,18 @@
       form.reset();
       ok.style.display = 'block';
       ok.scrollIntoView({ behavior: 'smooth' });
+
+      // (Opcional) si querés redirigir a una sección tuya:
+      // location.href = 'https://buylogic.com.ar/#gracias';
     } catch (e2) {
-      err.style.display = 'block';
       console.error(e2);
+      err.style.display = 'block';
     } finally {
       btn.disabled = false;
     }
   });
 </script>
-</script>
+
 <style>
 #form-contacto {{
   max-width: 500px;
