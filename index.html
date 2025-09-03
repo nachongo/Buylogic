@@ -60,31 +60,62 @@
     <h2>Contacto</h2>
     <p>¿Querés saber más sobre cómo BuyLogic puede ayudarte? Escribinos y nos pondremos en contacto a la brevedad.</p>
 
-<form action="https://submit-form.com/FpRXxHJNz">
+<form id="form-contacto" action="https://submit-form.com/FpRXxHJNz" method="POST" novalidate>
   <label for="name">Name</label>
-  <input type="text" id="name" name="name" placeholder="Name" required="" />
+  <input type="text" id="name" name="name" placeholder="Name" required />
+
   <label for="email">Email</label>
-  <input type="email" id="email" name="email" placeholder="Email" required="" />
+  <input type="email" id="email" name="email" placeholder="Email" required />
+
   <label for="message">Message</label>
-  <textarea
-    id="message"
-    name="message"
-    placeholder="Message"
-    required=""
-  ></textarea>
-  <button type="submit">Send</button>
+  <textarea id="message" name="message" placeholder="Message" required></textarea>
+
+  <!-- (Opcional) anti-spam honeypot -->
+  <input type="text" name="_honeypot" style="display:none">
+
+  <button type="submit" id="btnEnviar">Send</button>
 </form>
-<div id="mensajeGracias" class="gracias-animacion" style="display:none;">
+
+<!-- Mensajes de estado en TU página -->
+<div id="mensajeGracias" style="display:none; margin-top:12px;">
   Gracias por contactarnos. Pronto nos pondremos en contacto.
 </div>
+<div id="mensajeError" style="display:none; color:#c00; margin-top:12px;">
+  Hubo un problema al enviar. Intentá nuevamente.
+</div>
+
 <script>
-function enviarFormulario(event) {
-  event.preventDefault();
-  document.getElementById('form-contacto').reset();
-  const mensaje = document.getElementById('mensajeGracias');
-  mensaje.style.display = 'block';
-  mensaje.scrollIntoView({ behavior: 'smooth' });
-}
+  const form = document.getElementById('form-contacto');
+  const ok = document.getElementById('mensajeGracias');
+  const err = document.getElementById('mensajeError');
+  const btn = document.getElementById('btnEnviar');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();                 // <- evita la redirección
+    ok.style.display = 'none';
+    err.style.display = 'none';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' } // Formspark entiende JSON o multipart
+      });
+
+      if (!res.ok) throw new Error('Bad response');
+
+      form.reset();
+      ok.style.display = 'block';
+      ok.scrollIntoView({ behavior: 'smooth' });
+    } catch (e2) {
+      err.style.display = 'block';
+      console.error(e2);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
 </script>
 <style>
 #form-contacto {{
