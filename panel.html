@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BuyLogic - Panel de Usuario</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="panel.css" />
+</head>
+<body>
+  <div class="panel-container">
+    <aside class="sidebar">
+      <div class="logo-panel">
+        <img src="img/logo_celeste.png" alt="BuyLogic Logo" />
+      </div>
+      <nav class="menu">
+        <details open>
+          <summary>Sucursal 1</summary>
+          <ul>
+            <li><a href="#" onclick="event.preventDefault(); mostrarInformes()">Informes</a></li>
+            <li><a href="#" onclick="event.preventDefault(); mostrarComparar()">Comparar</a></li>
+            <li><a href="#" onclick="event.preventDefault(); mostrarSimulaciones()">Simulaciones</a></li>
+          </ul>
+        </details>
+      </nav>
+      <div class="logout">
+        <a href="login.html" class="btn-logout">Cerrar sesión</a>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <section class="bienvenida" id="bienvenida">
+        <h1>Bienvenido/a a tu Panel BuyLogic</h1>
+        <p>Seleccioná una sucursal y accedé a tus herramientas.</p>
+      </section>
+
+      <section class="upload" id="seccionUpload">
+        <div id="cargando" class="cargando-box">
+          <img src="img/iso_azul.svg" alt="Procesando" class="spinner">
+          <p>Procesando video... Generando informe.</p>
+        </div>
+        <label class="upload-box">
+          <input type="file" accept="video/*" onchange="mostrarCargando()" />
+          <span>📁 Hacé clic o arrastrá un video aquí</span>
+        </label>
+      </section>
+
+      <section class="informes" id="informes" style="display:none;">
+        <button onclick="volverInicio()" class="btn-volver">Volver al inicio</button>
+        <h2>Informes generados</h2>
+        <p>Aquí podrás ver los informes con el mapa de calor generado a partir del análisis y descargarlos.</p>
+        <div id="visorInforme" style="display:none;">
+          <button onclick="cerrarVisor()" class="btn-ver">Cerrar informe</button>
+          <embed id="pdfViewer" src="" type="application/pdf" width="100%" height="500px" />
+        </div>
+        <ul class="informe-lista" id="listaInformes">
+          <li>
+            <strong>Informe del 12 de junio de 2025 a las 19:52</strong>
+            <button onclick="verInforme(this, 'informe_2025_06_12_195213.pdf')" class="btn-ver">Ver informe</button>
+            <a href="informe_2025_06_12_195213.pdf" download class="descargar-link">Descargar</a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="comparar" id="comparar" style="display:none;">
+        <button onclick="volverInicio()" class="btn-volver">Volver al inicio</button>
+        <h2>Comparar informes</h2>
+        <p>Seleccioná dos o más informes para compararlos visualmente.</p>
+        <form>
+          <label><input type="checkbox" name="informes"> Informe 1</label><br>
+          <label><input type="checkbox" name="informes"> Informe 2</label><br>
+          <label><input type="checkbox" name="informes"> Informe 3</label><br>
+          <button class="btn-ver" style="margin-top: 20px;">Comparar</button>
+        </form>
+      </section>
+
+      <section class="simulaciones" id="simulaciones" style="display:none;">
+        <button onclick="volverInicio()" class="btn-volver">Volver al inicio</button>
+        <h2>Simulaciones</h2>
+        <p>Las simulaciones te permiten anticipar el impacto de cambios estratégicos. Elegí un paquete y contanos qué querés probar: promociones, reorganización, productos estrella, etc.</p>
+        <div class="cards">
+          <div class="card">
+            <h3>Simulación Individual</h3>
+            <p>Una sola estrategia. Ideal para validar antes de invertir.</p>
+            <button class="btn-ver">Contratar</button>
+          </div>
+          <div class="card">
+            <h3>Pack 5 Simulaciones</h3>
+            <p>Compará diferentes variantes y obtené respuestas rápidas.</p>
+            <button class="btn-ver">Contratar</button>
+          </div>
+          <div class="card">
+            <h3>Pack 10 Simulaciones</h3>
+            <p>Ideal para rediseñar completamente tu disposición comercial.</p>
+            <button class="btn-ver">Contratar</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function mostrarCargando() {
+      const box = document.getElementById('cargando');
+      box.classList.add('visible');
+      setTimeout(() => {
+        box.classList.remove('visible');
+        mostrarInformes();
+      }, 3000);
+    }
+
+    function verInforme(button, nombre) {
+      document.querySelectorAll('.btn-ver').forEach(b => b.classList.remove('activo'));
+      button.classList.add('activo');
+      document.getElementById('visorInforme').style.display = 'block';
+      document.getElementById('pdfViewer').src = nombre;
+    }
+
+    function cerrarVisor() {
+      document.getElementById('visorInforme').style.display = 'none';
+      document.getElementById('pdfViewer').src = '';
+    }
+
+    function volverInicio() {
+      document.querySelectorAll('main section').forEach(sec => sec.style.display = 'none');
+      document.getElementById('bienvenida').style.display = 'block';
+      document.getElementById('seccionUpload').style.display = 'block';
+    }
+
+    function mostrarInformes() {
+      document.querySelectorAll('main section').forEach(sec => sec.style.display = 'none');
+      document.getElementById('informes').style.display = 'block';
+    }
+
+    function mostrarComparar() {
+      document.querySelectorAll('main section').forEach(sec => sec.style.display = 'none');
+      document.getElementById('comparar').style.display = 'block';
+    }
+
+    function mostrarSimulaciones() {
+      document.querySelectorAll('main section').forEach(sec => sec.style.display = 'none');
+      document.getElementById('simulaciones').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
