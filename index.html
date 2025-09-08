@@ -60,20 +60,65 @@
     <h2>Contacto</h2>
     <p>¿Querés saber más sobre cómo BuyLogic puede ayudarte? Escribinos y nos pondremos en contacto a la brevedad.</p>
 
-<form action="https://submit-form.com/FpRXxHJNz">
+<form id="contact-form">
   <label for="name">Name</label>
-  <input type="text" id="name" name="name" placeholder="Name" required="" />
+  <input type="text" id="name" name="name" placeholder="Name" required />
+
   <label for="email">Email</label>
-  <input type="email" id="email" name="email" placeholder="Email" required="" />
+  <input type="email" id="email" name="email" placeholder="Email" required />
+
   <label for="message">Message</label>
-  <textarea
-    id="message"
-    name="message"
-    placeholder="Message"
-    required=""
-  ></textarea>
+  <textarea id="message" name="message" placeholder="Message" required></textarea>
+
   <button type="submit">Send</button>
 </form>
+
+<p id="form-status"></p>
+
+<script>
+  const form = document.getElementById("contact-form");
+  const statusEl = document.getElementById("form-status");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    statusEl.textContent = "⏳ Enviando...";
+
+    const payload = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      message: form.message.value.trim(),
+    };
+
+    try {
+      const resp = await fetch("https://submit-form.com/FpRXxHJNz", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (resp.ok) {
+        statusEl.textContent = "✅ ¡Mensaje enviado con éxito! Redirigiendo...";
+        form.reset();
+
+        // Redirige después de 2.5 segundos
+        setTimeout(() => {
+          window.location.href = "/index.html"; 
+          // 👉 Cambiá "/index.html" por tu URL real, ej:
+          // window.location.href = "https://tuusuario.github.io/tu-repo/";
+        }, 2500);
+      } else {
+        statusEl.textContent = "❌ Hubo un error al enviar.";
+      }
+    } catch (err) {
+      statusEl.textContent = "❌ Error de conexión. Intenta de nuevo.";
+      console.error(err);
+    }
+  });
+</script>
 <div id="mensajeGracias" class="gracias-animacion" style="display:none;">
   Gracias por contactarnos. Pronto nos pondremos en contacto.
 </div>
