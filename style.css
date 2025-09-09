@@ -245,7 +245,7 @@ footer {
 .imagen-item img.grafico {
   object-fit: contain;
   background: #fff;
-  padding: 5px;
+  padding: 6px;
 }
 
 /* Para el mapa de calor */
