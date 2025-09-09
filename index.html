@@ -339,7 +339,67 @@ function enviarFormulario(event) {
   gracias.scrollIntoView({ behavior: 'smooth' });
 }
 </script>
+<!-- Banner de Cookies -->
+<div id="cookie-banner" class="cookie-banner">
+  <p>
+    Usamos cookies para mejorar tu experiencia, analizar el tráfico y mostrar publicidad personalizada. 
+    <a href="politica_privacidad_buylogic.pdf" target="_blank">Leer más</a>
+  </p>
+  <div class="cookie-buttons">
+    <button onclick="acceptCookies()">Aceptar</button>
+    <button onclick="rejectCookies()">Rechazar</button>
+  </div>
+</div>
 
+<style>
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #22354c;
+  color: white;
+  padding: 15px;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+}
+.cookie-buttons {
+  display: flex;
+  gap: 10px;
+}
+.cookie-buttons button {
+  background: #dcf8ff;
+  color: #22354c;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.cookie-buttons button:hover {
+  opacity: 0.8;
+}
+</style>
+
+<script>
+function acceptCookies() {
+  localStorage.setItem("cookiesAccepted", "true");
+  document.getElementById("cookie-banner").style.display = "none";
+}
+
+function rejectCookies() {
+  localStorage.setItem("cookiesAccepted", "false");
+  document.getElementById("cookie-banner").style.display = "none";
+}
+
+window.onload = function() {
+  if (localStorage.getItem("cookiesAccepted") === null) {
+    document.getElementById("cookie-banner").style.display = "flex";
+  }
+};
+</script>
 </body>
 
 </html>
