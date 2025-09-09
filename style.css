@@ -220,3 +220,43 @@ footer {
 .boton-login:hover {
   background-color: #1b2d3f;
 }
+
+.imagenes-nosotros {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.imagen-item {
+  width: 30%;
+  text-align: center;
+}
+
+.imagen-item img {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Para los gráficos */
+.imagen-item img.grafico {
+  object-fit: contain;
+  background: #fff;
+  padding: 5px;
+}
+
+/* Para el mapa de calor */
+.imagen-item img.mapa {
+  object-fit: cover;
+}
+.caption {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #22354c; /* tu color corporativo */
+  font-weight: 600;
+}
+
+
