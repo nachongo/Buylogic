@@ -87,28 +87,28 @@
     <h2>Contacto</h2>
     <p>¿Querés saber más sobre cómo BuyLogic puede ayudarte? Escribinos y nos pondremos en contacto a la brevedad.</p>
 
-<form id="contact-form" action="https://submit-form.com/TU_ID_DE_FORMSPARK" method="POST">
-  <label for="nombre">Nombre</label>
-  <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+<form id="contact-form">
 
-  <label for="apellido">Apellido</label>
-  <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required />
+  <label for="name">Nombre</label>
+  <input type="text" id="name" name="name" placeholder="Tu nombre" required />
 
-  <label for="empresa">Empresa</label>
-  <input type="text" id="empresa" name="empresa" placeholder="Nombre de la empresa" required />
+  <label for="company">Empresa</label>
+  <input type="text" id="company" name="company" placeholder="Nombre de la empresa" required />
 
   <label for="email">Email</label>
   <input type="email" id="email" name="email" placeholder="Email" required />
 
   <label for="phone">Teléfono</label>
-  <input type="tel" id="phone" name="telefono" placeholder="Número de teléfono" required />
+  <input type="tel" id="phone" name="phone" placeholder="Número de teléfono" required />
 
-  <label for="mensaje">Mensaje</label>
-  <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje" required></textarea>
+  <label for="message">Mensaje</label>
+  <textarea id="message" name="message" placeholder="Escribe tu mensaje" required></textarea>
 
   <button type="submit">Enviar</button>
 </form>
-<p id="form-status"></p>    
+
+<p id="form-status"></p>
+
 <script>
   const form = document.getElementById("contact-form");
   const statusEl = document.getElementById("form-status");
@@ -281,7 +281,7 @@ function enviarFormulario(event) {
 }
 </style>
   </section>
-
+  
   <footer>
     <img src="img/iso_celeste.png" alt="BuyLogic Isotipo" height="30" style="margin-bottom: 10px;">
     <br />
